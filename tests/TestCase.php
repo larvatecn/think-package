@@ -32,8 +32,8 @@ abstract class TestCase extends PHPUnit
         $app['config']->set('cache.default', 'file');
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
+            'type' => 'sqlite',
+            'database' => 'memory',
             'prefix' => '',
         ]);
     }
@@ -41,7 +41,6 @@ abstract class TestCase extends PHPUnit
     protected function setUp(): void
     {
         parent::setUp();
-        // 执行HTTP应用并响应
-        $http = (new App())->http;
+        (new App())->http;
     }
 }
